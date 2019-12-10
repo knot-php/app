@@ -1,0 +1,15 @@
+<?php
+declare(strict_types=1);
+
+namespace MyApp;
+
+use Composer\Script\Event;
+
+final class Setup
+{
+    public static function build(Event $event)
+    {
+        unlink(dirname(__DIR__) . '/.travis.yml');
+        unlink(__FILE__);
+    }
+}
