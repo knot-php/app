@@ -3,9 +3,11 @@
 namespace MyApp\App\Front\View;
 
 use Stk2k\File\File;
-use Calgamo\Kernel\FileSystem\Dir;
-use Calgamo\Service\FileSystemService;
-use Calgamo\Service\LoggerService;
+
+use KnotLib\Kernel\FileSystem\Dir;
+use KnotLib\Service\FileSystemService;
+use KnotLib\Service\LoggerService;
+
 use MyApp\View\ViewHelper;
 
 abstract class BaseView

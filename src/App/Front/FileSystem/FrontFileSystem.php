@@ -1,9 +1,9 @@
 <?php
 namespace MyApp\App\Front\FileSystem;
 
-use Calgamo\Framework\DefaultFileSystem;
-use Calgamo\Kernel\FileSystem\Dir;
-use Calgamo\Kernel\FileSystem\FileSystemInterface;
+use KnotPhp\Framework\DefaultFileSystem;
+use KnotLib\Kernel\FileSystem\Dir;
+use KnotLib\Kernel\FileSystem\FileSystemInterface;
 
 class FrontFileSystem extends DefaultFileSystem implements FileSystemInterface
 {

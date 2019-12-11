@@ -3,10 +3,9 @@ namespace MyApp\Exception;
 
 use Throwable;
 
-use CalgamoLib\Exception\CalgamoException;
-use CalgamoLib\Exception\Runtime\RuntimeExceptionInterface;
+use KnotLib\Exception\KnotPhpException;
 
-class MyAppException extends CalgamoException implements MyAppExceptionInterface, RuntimeExceptionInterface
+class MyAppException extends KnotPhpException implements MyAppExceptionInterface
 {
     /**
      * MyAppException constructor.

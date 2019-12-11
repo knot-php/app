@@ -4,13 +4,16 @@ namespace MyApp\App\Front;
 
 use Throwable;
 
-use Calgamo\Kernel\Kernel\ApplicationType;
-use Calgamo\Module\AuraSession\AuraSessionModule;
-use Calgamo\Module\Application\SimpleApplication;
-use Calgamo\Kernel\Kernel\ApplicationInterface;
-use Calgamo\Kernel\Logger\LoggerUtil;
-use Calgamo\Framework\CalgamoFrameworkPackage;
-use Calgamo\Module\GuzzleHttp\Package\GuzzleHttpPackage;
+use KnotLib\Kernel\Kernel\ApplicationType;
+use KnotLib\Module\Application\SimpleApplication;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
+use KnotLib\Kernel\Logger\LoggerUtil;
+
+use KnotPhp\Module\AuraSession\AuraSessionModule;
+use KnotPhp\Framework\KnotFrameworkPackage;
+use KnotPhp\Module\GuzzleHttp\Package\GuzzleHttpPackage;
+
+
 use MyApp\App\Front\Module\FrontRouterModule;
 use MyApp\App\Front\Module\FrontDiModule;
 
@@ -28,7 +31,7 @@ class FrontWebApplication extends SimpleApplication
      */
     public function configure() : ApplicationInterface
     {
-        $this->requirePackage(CalgamoFrameworkPackage::class);
+        $this->requirePackage(KnotFrameworkPackage::class);
         $this->requirePackage(GuzzleHttpPackage::class);
         $this->requireModule(FrontRouterModule::class);
         $this->requireModule(FrontDiModule::class);

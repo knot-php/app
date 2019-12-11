@@ -1,18 +1,20 @@
 <?php
 namespace MyApp\App\Front\Module;
 
-use Calgamo\Kernel\FileSystem\Dir;
-use Calgamo\Kernel\FileSystem\FileSystemInterface;
-use Calgamo\Kernel\Pipeline\MiddlewareInterface;
-use Calgamo\Module\CalgamoRouter\CalgamoRouterModule;
-use Calgamo\Kernel\Kernel\ApplicationInterface;
-use Calgamo\Kernel\Module\ModuleInterface;
-use Calgamo\Http\Middleware\WebServerRoutingMiddleware;
-use Calgamo\Module\CalgamoService\CalgamoServiceModule;
-use Calgamo\Service\DI;
+use KnotLib\Kernel\FileSystem\Dir;
+use KnotLib\Kernel\FileSystem\FileSystemInterface;
+use KnotLib\Kernel\Pipeline\MiddlewareInterface;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
+use KnotLib\Kernel\Module\ModuleInterface;
+use KnotLib\Http\Middleware\WebServerRoutingMiddleware;
+use KnotLib\Service\DI;
+
+use KnotPhp\Module\KnotRouter\KnotRouterModule;
+use KnotPhp\Module\KnotService\KnotServiceModule;
+
 use MyApp\App\Front\Dispatcher\FrontDispatcher;
 
-class FrontRouterModule extends CalgamoRouterModule implements ModuleInterface
+class FrontRouterModule extends KnotRouterModule implements ModuleInterface
 {
     /** @var FileSystemInterface */
     private $fs;
@@ -23,7 +25,7 @@ class FrontRouterModule extends CalgamoRouterModule implements ModuleInterface
     public static function requiredModules(): array
     {
         return [
-            CalgamoServiceModule::class,
+            KnotServiceModule::class,
         ];
     }
 

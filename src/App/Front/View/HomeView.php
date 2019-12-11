@@ -1,8 +1,8 @@
 <?php
 namespace MyApp\App\Front\View;
 
-use Calgamo\Service\FileSystemService;
-use Calgamo\Service\LoggerService;
+use KnotLib\Service\FileSystemService;
+use KnotLib\Service\LoggerService;
 
 class HomeView extends BaseView
 {

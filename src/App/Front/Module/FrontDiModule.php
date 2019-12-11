@@ -3,12 +3,12 @@ namespace MyApp\App\Front\Module;
 
 use Throwable;
 
-use Calgamo\Service\DiServiceTrait;
-use Calgamo\Kernel\Module\Components;
-use Calgamo\Kernel\Kernel\ApplicationInterface;
-use Calgamo\Kernel\Module\ModuleInterface;
-use Calgamo\Kernel\Module\AbstractModule;
-use Calgamo\Kernel\Exception\ModuleInstallationException;
+use KnotLib\Service\DiServiceTrait;
+use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
+use KnotLib\Kernel\Module\ModuleInterface;
+use KnotLib\Kernel\Module\AbstractModule;
+use KnotLib\Kernel\Exception\ModuleInstallationException;
 
 class FrontDiModule extends AbstractModule implements ModuleInterface
 {

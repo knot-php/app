@@ -1,7 +1,7 @@
 <?php
 namespace MyApp\App\Front\Controller;
 
-use Calgamo\Service\LoggerService;
+use KnotLib\Service\LoggerService;
 
 class BaseController
 {

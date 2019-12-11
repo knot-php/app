@@ -2,11 +2,12 @@
 
 namespace MyApp\App\Front\Dispatcher;
 
-use Calgamo\Kernel\Di\DiContainerInterface;
-use CalgamoLib\Router\DispatcherInterface;
-use CalgamoLib\Router\Router;
-use Calgamo\Service\DI;
-use Calgamo\Service\LoggerService;
+use KnotLib\Kernel\Di\DiContainerInterface;
+use KnotLib\Router\DispatcherInterface;
+use KnotLib\Router\Router;
+use KnotLib\Service\DI;
+use KnotLib\Service\LoggerService;
+
 use MyApp\App\Front\Controller\HomeController;
 use MyApp\App\Front\View\HomeView;
 use MyApp\App\Front\Controller\ErrorController;

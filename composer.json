@@ -17,7 +17,7 @@
     "knot-php/command": "~0.1",
     "knot-php/module-knot-http": "~0.1",
     "knot-php/module-knot-pipeline": "~0.1",
-    "knot-php/module-router": "~0.1",
+    "knot-php/module-knot-router": "~0.1",
     "knot-php/module-guzzle-http": "~0.1",
     "knot-php/module-aura-session": "~0.1",
     "knot-php/module-stk2k-eventstream": "~0.1"

@@ -1,9 +1,10 @@
 <?php
 namespace MyApp\Exception;
 
-use CalgamoLib\Exception\CalgamoExceptionInterface;
+use KnotLib\Exception\KnotPhpExceptionInterface;
+use KnotLib\Exception\Runtime\RuntimeExceptionInterface;
 
-interface MyAppExceptionInterface extends CalgamoExceptionInterface
+interface MyAppExceptionInterface extends KnotPhpExceptionInterface, RuntimeExceptionInterface
 {
 }
 
