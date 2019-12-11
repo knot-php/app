@@ -43,13 +43,9 @@ class FrontWebApplication extends SimpleApplication
      * Handle exception
      *
      * @param Throwable $e
-     *
-     * @return bool
      */
-    public function handleException(Throwable $e) : bool
+    public function handleException(Throwable $e)
     {
         LoggerUtil::logException($e, $this->logger());
-
-        return true;
     }
 }
