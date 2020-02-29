@@ -2,11 +2,12 @@
 
 namespace MyApp\App\Front\Dispatcher;
 
-use KnotLib\Kernel\Di\DiContainerInterface;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Router\DispatcherInterface;
 use KnotLib\Router\Router;
 use KnotLib\Service\DI;
 use KnotLib\Service\LoggerService;
+use KnotLib\Service\Util\DiServiceTrait;
 
 use MyApp\App\Front\Controller\HomeController;
 use MyApp\App\Front\View\HomeView;
@@ -16,26 +17,26 @@ use MyApp\Exception\RouteNotFoundException;
 
 class FrontDispatcher implements DispatcherInterface
 {
-    /** @var LoggerService */
-    private $logger;
+    use DiServiceTrait;
 
-    /** @var DiContainerInterface */
-    private $container;
+    /** @var ApplicationInterface */
+    private $app;
 
-    public function __construct(LoggerService $logger, DiContainerInterface $container)
+    public function __construct(ApplicationInterface $app)
     {
-        $this->logger = $logger;
-        $this->container = $container;
+        $this->app = $app;
     }
 
     /**
      * Get logger
      *
      * @return LoggerService
+     *
+     * @throws
      */
     public function getLogger() : LoggerService
     {
-        return $this->logger;
+        return $this->getLoggerService($this->app->di());
     }
 
     /**
@@ -51,23 +52,23 @@ class FrontDispatcher implements DispatcherInterface
      */
     public function dispatch(string $path, array $vars, string $route_name)
     {
-        $this->logger->debug('dispatched: ' . $route_name);
+        $logger = $this->getLogger();
 
-        $vars['path'] = $path;
-        $vars['route_name'] = $path;
+        $logger->debug('dispatched: ' . $route_name);
 
-        $logger  = $this->container[DI::SERVICE_LOGGER];
-        $fs  = $this->container[DI::SERVICE_FILESYSTEM];
+        $di = $this->app->di();
+
+        $filesystem  = $di[DI::URI_SERVICE_LOGGER];
 
         switch($route_name){
             case Router::ROUTE_NOT_FOUND:
                 $vars = (new ErrorController($logger))->status404($vars);
-                (new ErrorView($fs, $logger, 'error', 'error/status404'))
+                (new ErrorView($filesystem, $logger, 'error', 'error/status404'))
                     ->status404($vars);
                 break;
             case 'internal_server_error':
                 $vars = (new ErrorController($logger))->status500($vars);
-                (new ErrorView($fs, $logger, 'error', 'error/status500'))
+                (new ErrorView($filesystem, $logger, 'error', 'error/status500'))
                     ->status500($vars);
                 break;
 
@@ -75,7 +76,7 @@ class FrontDispatcher implements DispatcherInterface
             case 'home':
                 $vars = (new HomeController($logger))
                     ->index();
-                (new HomeView($fs, $logger))
+                (new HomeView($filesystem, $logger))
                     ->index($vars);
                 break;
 

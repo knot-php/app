@@ -2,26 +2,30 @@
 
 namespace MyApp\App\Front;
 
+use KnotLib\Router\DispatcherInterface;
+use MyApp\App\Front\Dispatcher\FrontDispatcher;
 use Throwable;
 
 use KnotLib\Kernel\Kernel\ApplicationType;
-use KnotLib\Module\Application\SimpleApplication;
+use KnotPhp\Framework\Application\KnotHttpApplication;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Logger\LoggerUtil;
 
 use KnotPhp\Module\AuraSession\AuraSessionModule;
-use KnotPhp\Framework\KnotFrameworkPackage;
+use KnotPhp\Framework\Package\KnotFrameworkDefaultPackage;
 use KnotPhp\Module\GuzzleHttp\Package\GuzzleHttpPackage;
+use KnotPhp\Module\KnotRouter\ArrayConfigKnotRouterModule;
 
-
-use MyApp\App\Front\Module\FrontRouterModule;
 use MyApp\App\Front\Module\FrontDiModule;
 
-class FrontWebApplication extends SimpleApplication
+class FrontWebApplication extends KnotHttpApplication
 {
-    public static function type(): ApplicationType
+    /**
+     * {@inheritDoc}
+     */
+    public function getDispatcher(): DispatcherInterface
     {
-        return ApplicationType::of(ApplicationType::WEB_APP);
+        return new FrontDispatcher($this);
     }
 
     /**
@@ -31,9 +35,9 @@ class FrontWebApplication extends SimpleApplication
      */
     public function configure() : ApplicationInterface
     {
-        $this->requirePackage(KnotFrameworkPackage::class);
+        $this->requirePackage(KnotFrameworkDefaultPackage::class);
         $this->requirePackage(GuzzleHttpPackage::class);
-        $this->requireModule(FrontRouterModule::class);
+        $this->requireModule(ArrayConfigKnotRouterModule::class);
         $this->requireModule(FrontDiModule::class);
         $this->requireModule(AuraSessionModule::class);
         return $this;

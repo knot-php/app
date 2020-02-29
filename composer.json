@@ -13,6 +13,7 @@
   "require": {
     "php": ">=7.1",
     "vlucas/phpdotenv": "~3.0",
+    "knot-lib/http": "~0.2",
     "knot-php/framework": "~0.1",
     "knot-php/command": "~0.1",
     "knot-php/module-knot-http": "~0.1",
@@ -43,8 +44,11 @@
       "knot command:make KnotPhp\\Framework\\KnotCommandProvider",
       "knot command:install"
     ],
-    "serve": [
+    "start": [
       "php -S localhost:8880 -t public"
     ]
+  },
+  "config": {
+    "process-timeout": 0
   }
 }

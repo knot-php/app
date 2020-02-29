@@ -3,27 +3,35 @@ namespace MyApp\App\Front\Module;
 
 use Throwable;
 
-use KnotLib\Service\DiServiceTrait;
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Service\Util\DiServiceTrait;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
-use KnotLib\Kernel\Module\AbstractModule;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
 
-class FrontDiModule extends AbstractModule implements ModuleInterface
+class FrontDiModule implements ModuleInterface
 {
     use DiServiceTrait;
 
+    /**
+     * Declare dependency on another modules
+     *
+     * @return array
+     */
+    public static function requiredModules() : array
+    {
+        return [];
+    }
+    
     /**
      * Declare dependent on components
      *
      * @return array
      */
-    public static function requiredComponents() : array
+    public static function requiredComponentTypes() : array
     {
         return [
-            Components::SESSION,
-            Components::ENV,
+            ComponentTypes::SESSION,
         ];
     }
 
@@ -32,7 +40,7 @@ class FrontDiModule extends AbstractModule implements ModuleInterface
      */
     public static function declareComponentType(): string
     {
-        return Components::DI;
+        return ComponentTypes::DI;
     }
 
     /**

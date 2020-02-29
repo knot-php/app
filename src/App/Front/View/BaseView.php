@@ -67,16 +67,6 @@ abstract class BaseView
     }
 
     /**
-     * Get logger
-     *
-     * @return LoggerService
-     */
-    public function getLogger() : LoggerService
-    {
-        return $this->logger;
-    }
-
-    /**
      * @return array
      */
     public abstract function getCustomPageInfo() : array;
