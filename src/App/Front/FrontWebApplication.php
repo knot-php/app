@@ -2,21 +2,15 @@
 
 namespace MyApp\App\Front;
 
-use KnotLib\Router\DispatcherInterface;
-use MyApp\App\Front\Dispatcher\FrontDispatcher;
 use Throwable;
 
-use KnotLib\Kernel\Kernel\ApplicationType;
-use KnotPhp\Framework\Application\KnotHttpApplication;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Logger\LoggerUtil;
-
-use KnotPhp\Module\AuraSession\AuraSessionModule;
-use KnotPhp\Framework\Package\KnotFrameworkDefaultPackage;
-use KnotPhp\Module\GuzzleHttp\Package\GuzzleHttpPackage;
-use KnotPhp\Module\KnotRouter\ArrayConfigKnotRouterModule;
+use KnotLib\Router\DispatcherInterface;
+use KnotPhp\Framework\Application\KnotHttpApplication;
 
 use MyApp\App\Front\Module\FrontDiModule;
+use MyApp\App\Front\Dispatcher\FrontDispatcher;
 
 class FrontWebApplication extends KnotHttpApplication
 {
@@ -35,11 +29,10 @@ class FrontWebApplication extends KnotHttpApplication
      */
     public function configure() : ApplicationInterface
     {
-        $this->requirePackage(KnotFrameworkDefaultPackage::class);
-        $this->requirePackage(GuzzleHttpPackage::class);
-        $this->requireModule(ArrayConfigKnotRouterModule::class);
+        parent::configure();
+
         $this->requireModule(FrontDiModule::class);
-        $this->requireModule(AuraSessionModule::class);
+
         return $this;
     }
 

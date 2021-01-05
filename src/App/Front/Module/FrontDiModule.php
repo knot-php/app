@@ -1,6 +1,7 @@
 <?php
 namespace MyApp\App\Front\Module;
 
+use KnotLib\Service\LoggerService;
 use Throwable;
 
 use KnotLib\Service\Util\DiServiceTrait;
@@ -8,6 +9,9 @@ use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Exception\ModuleInstallationException;
+
+use MyApp\Service\DI;
+use MyApp\Constants\LogChannels;
 
 class FrontDiModule implements ModuleInterface
 {
@@ -53,12 +57,18 @@ class FrontDiModule implements ModuleInterface
     public function install(ApplicationInterface $app)
     {
         try{
-            //$c = $app->di();
+            $di = $app->di();
             
             //$fs = $app->fileSystem();
             //$session = $app->session();
             //$logger = $app->logger();
 
+            // services.logger factory
+            $di->extend(DI::URI_SERVICE_LOGGER, function($component){
+                /** @var LoggerService $component */
+                $component->setChannelId(LogChannels::FRONT);
+                return $component;
+            });
         }
         catch(Throwable $e)
         {

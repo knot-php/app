@@ -5,10 +5,10 @@ namespace MyApp\App\Front\Dispatcher;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Router\DispatcherInterface;
 use KnotLib\Router\Router;
-use KnotLib\Service\DI;
 use KnotLib\Service\LoggerService;
 use KnotLib\Service\Util\DiServiceTrait;
 
+use MyApp\Service\DI;
 use MyApp\App\Front\Controller\HomeController;
 use MyApp\App\Front\View\HomeView;
 use MyApp\App\Front\Controller\ErrorController;
@@ -22,6 +22,9 @@ class FrontDispatcher implements DispatcherInterface
     /** @var ApplicationInterface */
     private $app;
 
+    /** @var LoggerService */
+    private $logger;
+
     public function __construct(ApplicationInterface $app)
     {
         $this->app = $app;
@@ -34,9 +37,12 @@ class FrontDispatcher implements DispatcherInterface
      *
      * @throws
      */
-    public function getLogger() : LoggerService
+    public function getLoggerService() : LoggerService
     {
-        return $this->getLoggerService($this->app->di());
+        if (!$this->logger){
+            $this->logger = $this->app->di()->get(DI::URI_SERVICE_LOGGER);
+        }
+        return $this->logger;
     }
 
     /**
@@ -52,13 +58,13 @@ class FrontDispatcher implements DispatcherInterface
      */
     public function dispatch(string $path, array $vars, string $route_name)
     {
-        $logger = $this->getLogger();
+        $logger = $this->getLoggerService();
 
         $logger->debug('dispatched: ' . $route_name);
 
         $di = $this->app->di();
 
-        $filesystem  = $di[DI::URI_SERVICE_LOGGER];
+        $filesystem  = $di[DI::URI_SERVICE_FILESYSTEM];
 
         switch($route_name){
             case Router::ROUTE_NOT_FOUND:
