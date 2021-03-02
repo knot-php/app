@@ -42,8 +42,8 @@ abstract class BaseView
         $layout_file = "layouts/{$layout}.layout.php";
         $page_file = "pages/{$page}.page.php";
 
-        $this->layout_file = new File( $layout_file, $template_dir );
-        $page_file = new File($page_file, $template_dir);
+        $this->layout_file = new File($layout_file, new File($template_dir));
+        $page_file = new File($page_file, new File($template_dir));
 
         $logger->debug('layout_file: ' . $this->layout_file);
         $logger->debug('page_file: ' . $page_file);

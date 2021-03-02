@@ -32,13 +32,12 @@ class ViewHelper
      */
     public function parts(string $parts_id) : string
     {
-        $parts_file = new File( "parts/$parts_id.parts.php", $this->template_dir );
+        $parts_file = new File("parts/$parts_id.parts.php", new File($this->template_dir));
         
         if (!$parts_file->exists()){
             die('Template not found: ' . "parts/$parts_id.parts.php");
         }
 
-        /** @noinspection PhpIncludeInspection */
         return $parts_file->getPath();
     }
 }

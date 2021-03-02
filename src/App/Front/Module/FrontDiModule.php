@@ -44,7 +44,7 @@ class FrontDiModule implements ModuleInterface
      */
     public static function declareComponentType(): string
     {
-        return ComponentTypes::DI;
+        return ComponentTypes::APPLICATION;
     }
 
     /**
