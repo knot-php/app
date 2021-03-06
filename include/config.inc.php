@@ -7,10 +7,10 @@ return [
     /** Site information */
     'site' => [
         /** Site Name */
-        'site_name' => 'My Blog',
+        'site_name' => $_ENV['SITE_NAME'] ?? '',
 
         /** Site URL */
-        'site_url' => 'https:://example.com',
+        'site_url' => $_ENV['SITE_URL'] ?? '',
 
     ],
 
@@ -26,6 +26,6 @@ return [
     ],
 
     /** title */
-    'title' => $_ENV['SITE_NAME'],
+    'title' => $_ENV['SITE_NAME'] ?? '',
 
 ];
