@@ -7,10 +7,10 @@ return [
     /** Site information */
     'site' => [
         /** Site Name */
-        'site_name' => $_ENV['SITE_NAME'],
+        'site_name' => 'My Blog',
 
         /** Site URL */
-        'site_url' => $_ENV['SITE_URL'],
+        'site_url' => 'https:://example.com',
 
     ],
 
@@ -19,10 +19,10 @@ return [
         'viewport' => 'width=device-width, initial-scale=1.0',
 
         /** Description in header */
-        'description' => '',
+        'description' => 'this is an exmaple site',
 
         /** SEO keywords */
-        'keywords' => '',
+        'keywords' => 'example, kNot Framework',
     ],
 
     /** title */
