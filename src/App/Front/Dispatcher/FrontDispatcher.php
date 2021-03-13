@@ -52,11 +52,11 @@ class FrontDispatcher implements DispatcherInterface
      * @param array $vars
      * @param string $route_name
      *
-     * @return bool
+     * @return void
      *
      * @throws
      */
-    public function dispatch(string $path, array $vars, string $route_name)
+    public function dispatch(string $path, array $vars, string $route_name) : void
     {
         $logger = $this->getLoggerService();
 
@@ -89,6 +89,5 @@ class FrontDispatcher implements DispatcherInterface
             default:
                 throw new RouteNotFoundException($route_name);
         }
-        return true;
     }
 }

@@ -9,6 +9,7 @@ use KnotLib\Kernel\Logger\LoggerUtil;
 use KnotLib\Router\DispatcherInterface;
 use KnotPhp\Framework\Application\KnotHttpApplication;
 use KnotPhp\Module\KnotExceptionHandler\Html\HtmlExceptionHandlerModule;
+use KnotPhp\Module\KnotExceptionHandler\TextExceptionHandlerModule;
 
 use MyApp\App\Front\Module\FrontDiModule;
 use MyApp\App\Front\Dispatcher\FrontDispatcher;
@@ -34,6 +35,7 @@ class FrontWebApplication extends KnotHttpApplication
 
         $this->requireModule(HtmlExceptionHandlerModule::class);
         $this->requireModule(FrontDiModule::class);
+        $this->requireModule(TextExceptionHandlerModule::class);
 
         return $this;
     }
