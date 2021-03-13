@@ -35,7 +35,7 @@ class FrontDiModule implements ModuleInterface
     public static function requiredComponentTypes() : array
     {
         return [
-            ComponentTypes::SESSION,
+            ComponentTypes::APPLICATION,
         ];
     }
 
